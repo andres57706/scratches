@@ -13,6 +13,7 @@ fi
 # Parse args
 PT=${1:-1}
 WD=${2:-$(pwd)}
+EDITOR="code"
 
 # Creading fresh data
 echo "Fresh Ticket Number: "
@@ -52,7 +53,9 @@ cd $worktree_location &&\
 git add mutations/ &&\
 
 # edit files
-nvim $(git diff --staged --name-only) &&\
+$EDITOR $(git diff --staged --name-only) &&\
+
+exit 1
 
 # add changes
 git add mutations/ &&\
